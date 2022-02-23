@@ -10,6 +10,8 @@ public class MouseLook : MonoBehaviour
 
   private float xRotation = 0f;
 
+  public static bool cameraLook;
+
 
 
 
@@ -17,6 +19,7 @@ public class MouseLook : MonoBehaviour
     void Start()
     {
       Cursor.lockState = CursorLockMode.Locked;
+      cameraLook = true;
     }
 
     // Update is called once per frame
@@ -32,7 +35,14 @@ public class MouseLook : MonoBehaviour
         transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
 
         playerBody.Rotate(Vector3.up * mouseX);
-
+      if (cameraLook == false)
+      {
+        Cursor.lockState = CursorLockMode.None;
+      }
+      else
+      {
+        Cursor.lockState = CursorLockMode.Locked;
+      }
 
     }
 }
