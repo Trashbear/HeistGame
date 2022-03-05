@@ -5,8 +5,12 @@ using UnityEngine;
 public class C_RayCasting : MonoBehaviour
 {
     RaycastHit hit;
+
     float theDistance;
+
     public int guardVision;
+
+    public bool playerSpotted;
 
     // Update is called once per frame
     void Update()
@@ -17,7 +21,12 @@ public class C_RayCasting : MonoBehaviour
         if(Physics.Raycast(transform.position,(forward), out hit))
         {
             theDistance = hit.distance;
-            Debug.Log(theDistance + "+" + hit.collider.gameObject.name);
+            //Debug.Log(theDistance + "+" + hit.collider.gameObject.name);
+
+            if(hit.collider.gameObject.tag == "Player")
+            {
+                Debug.Log("from laser: player hit");
+            }
         }
     }
 }
