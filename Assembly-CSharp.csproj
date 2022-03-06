@@ -38,11 +38,13 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\MouseLook.cs" />
      <Compile Include="Assets\Scripts\GuardNavMesh.cs" />
+     <Compile Include="Assets\Scripts\C_gemGrab.cs" />
      <Compile Include="Assets\Scripts\C_GuardNav.cs" />
      <Compile Include="Assets\Scripts\C_RayCasting.cs" />
      <Compile Include="Assets\Scripts\C_PlayerMovement.cs" />
      <Compile Include="Assets\Scripts\PlayerMovement.cs" />
-     <Compile Include="Assets\Scripts\C_gemGrab.cs" />
+     <Compile Include="Assets\Scripts\C_SmokeBomb.cs" />
+     <Compile Include="Assets\Scripts\C_BombExpand.cs" />
     <Reference Include="UnityEngine">
         <HintPath>E:/Unity/2020.3.16f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>

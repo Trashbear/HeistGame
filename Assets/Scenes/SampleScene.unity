@@ -3233,7 +3233,8 @@ GameObject:
   - component: {fileID: 768964883}
   - component: {fileID: 768964882}
   - component: {fileID: 768964880}
-  m_Layer: 0
+  - component: {fileID: 768964881}
+  m_Layer: 11
   m_Name: C_FPSPlayer
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -3254,6 +3255,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 768964882}
   speed: 8
+  stamina: 0
+--- !u!114 &768964881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 768964879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1669d2f914876642b03363d1d4ebec9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  smokeBombObj: {fileID: 1574588149892830657, guid: f3646075853dd5f4a99ac5dfa019116a, type: 3}
+  bombThrowArea: {fileID: 1707229298}
+  power: 12
 --- !u!143 &768964882
 CharacterController:
   m_ObjectHideFlags: 0
@@ -3280,11 +3297,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 768964879}
   m_LocalRotation: {x: -0, y: -0.00020847455, z: -0, w: 1}
-  m_LocalPosition: {x: -1.5, y: 2.513, z: 15.49}
+  m_LocalPosition: {x: -1.5, y: 2.513, z: 15.473}
   m_LocalScale: {x: 1, y: 1.3959, z: 1}
   m_Children:
   - {fileID: 2088622868}
   - {fileID: 992438026}
+  - {fileID: 1707229298}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: -0.024, z: 0}
@@ -4404,7 +4422,7 @@ GameObject:
   - component: {fileID: 992438029}
   - component: {fileID: 992438028}
   - component: {fileID: 992438027}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -5862,9 +5880,11 @@ MonoBehaviour:
   - {fileID: 742451946}
   - {fileID: 398033416}
   - {fileID: 1915619827}
-  speed: 300
   guardVision: 25
   player: {fileID: 2088622868}
+  smokeHit: 0
+  smokeTimer: 5
+  smokeStop: 5
 --- !u!195 &1312732421
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -5875,7 +5895,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.50000006
-  m_Speed: 3.5
+  m_Speed: 8
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -7155,6 +7175,36 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1668312194}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1707229297
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1707229298}
+  m_Layer: 11
+  m_Name: hand
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1707229298
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1707229297}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: 0.12003357, z: 1.06}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 768964883}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1721533490
 GameObject:
   m_ObjectHideFlags: 0
@@ -8759,7 +8809,7 @@ GameObject:
   - component: {fileID: 2088622870}
   - component: {fileID: 2088622869}
   - component: {fileID: 2088622872}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: playerObject
   m_TagString: Player
   m_Icon: {fileID: 0}

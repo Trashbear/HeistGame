@@ -10,7 +10,7 @@ public class C_GuardNav : MonoBehaviour
     private int destPoint;
     private NavMeshAgent agent;
 
-    public float speed;
+    //public float speed;
 
     private bool playerSpotted = false;
 
@@ -27,6 +27,12 @@ public class C_GuardNav : MonoBehaviour
     private bool isHiding = true;
 
     public Transform player;
+
+    public bool smokeHit = false;
+
+    public float smokeTimer = 5.0f;
+
+    public float smokeStop = 5.0f;
 
     void Start() 
     {
@@ -59,7 +65,7 @@ public class C_GuardNav : MonoBehaviour
 
     void Update() 
     {
-        if(!playerSpotted)
+        if(playerSpotted == false)
         {
             // Choose the next destination point when the agent gets
             // close to the current one.
@@ -72,7 +78,24 @@ public class C_GuardNav : MonoBehaviour
         {
             Debug.Log("player spotted");
             agent.SetDestination(player.position);
-        }   
+        }
+
+        /*
+        does not matter anymore since the smoke is a trigger, I guess
+        if(smokeHit == true)
+        {
+            smokeStop -= Time.deltaTime;
+
+            agent.isStopped = true;
+
+            if(smokeStop < 0)
+            {
+                smokeStop = 5.0f;
+                smokeHit = false;
+                agent.isStopped = false;
+            }
+        } 
+        */
 
         //three rays in a VV to mimic a cone of vision
         Vector3 forward = transform.TransformDirection(Vector3.forward) * guardVision;
@@ -83,10 +106,9 @@ public class C_GuardNav : MonoBehaviour
         Debug.DrawRay(transform.position, right, Color.red);
         Debug.DrawRay(transform.position, left, Color.red);
 
-        if(Physics.Raycast(transform.position,(forward), out hit))
+        if(Physics.Raycast(transform.position,(forward), out hit) || Physics.Raycast(transform.position,(right), out hit) || Physics.Raycast(transform.position,(left), out hit))
         {
             theDistance = hit.distance;
-            //Debug.Log(theDistance + "+" + hit.collider.gameObject.name);
 
             if(hit.collider.gameObject.tag == "Player")
             {
@@ -108,4 +130,15 @@ public class C_GuardNav : MonoBehaviour
             }
         }
     }
+
+    /*
+    same here lol
+    void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "smokeLayer")
+        {
+            smokeHit = true;
+        }
+    }
+    */
 }
