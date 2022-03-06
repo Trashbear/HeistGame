@@ -34,6 +34,14 @@ public class C_GuardNav : MonoBehaviour
 
     public float smokeStop = 5.0f;
 
+    //private Vector3 noAngle = Vector3.forward;
+
+    //private Quaternion degrees = Quaternion.AngleAxis(-15, new Vector3(0,1,0));
+
+    //private Vector3 newVector = degrees*noAngle;
+
+    
+
     void Start() 
     {
         agent = GetComponent<NavMeshAgent>();
@@ -102,11 +110,18 @@ public class C_GuardNav : MonoBehaviour
         Vector3 right = transform.TransformDirection(Vector3.right-Vector3.back) * guardVision;
         Vector3 left = transform.TransformDirection(Vector3.left-Vector3.back) * guardVision;
 
+        //a fourth to aim at crouching players
+        Vector3 down = transform.TransformDirection(Vector3.forward-Vector3.up) * guardVision;
+        //Vector3 down = transform.TransformDirection(Vector3.forward-new Vector3()) * guardVision;
+        
         Debug.DrawRay(transform.position, forward, Color.red);
         Debug.DrawRay(transform.position, right, Color.red);
         Debug.DrawRay(transform.position, left, Color.red);
+        Debug.DrawRay(transform.position, down, Color.red);
+        //Debug.DrawRay(transform.position, new Vector3(1f, 15f, 0f), Color.red);
 
-        if(Physics.Raycast(transform.position,(forward), out hit) || Physics.Raycast(transform.position,(right), out hit) || Physics.Raycast(transform.position,(left), out hit))
+        if(Physics.Raycast(transform.position,(forward), out hit) || Physics.Raycast(transform.position,(right), out hit) || 
+        Physics.Raycast(transform.position,(left), out hit) || Physics.Raycast(transform.position, (down), out hit))
         {
             theDistance = hit.distance;
 
